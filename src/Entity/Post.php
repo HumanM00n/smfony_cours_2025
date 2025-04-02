@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use App\Entity\Gedmo\Slug;
+use App\Entity\Gedmo\Timestampable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Repository\PostRepository;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -16,6 +19,7 @@ class Post
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+    #[Gedmo\Slug(fields: ['title'])]
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -27,6 +31,7 @@ class Post
     private ?string $image = null;
 
     #[ORM\Column]
+    #[Gedmo\Timestampable(on:"create")]
     private ?\DateTimeImmutable $createAt = null;
 
     #[ORM\Column]
