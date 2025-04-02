@@ -30,7 +30,8 @@ class PostType extends AbstractType
             // ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                'placeholder' => 'Sélectionner une catégorie',
             ])
 
             ->add('Valider', SubmitType::class)
